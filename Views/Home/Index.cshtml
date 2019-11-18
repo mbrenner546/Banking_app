@@ -1,0 +1,86 @@
+﻿
+@model Final_Project_Team12.Models.BankAccount
+@{
+    ViewData["Title"] = "Index";
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/styles.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="container">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <h3>Welcome to the Bevo Bank and Trust!</h3>
+            <h4>In Bevo We Trust!</h4>
+            <a asp-action="Register" asp-controller="Account" class="btn btn-success">Register</a>
+            <a asp-action="Login" asp-controller="Account" class="btn btn-success">Login</a>
+
+        }
+
+
+
+        @if (User.IsInRole("Customer"))
+        {
+
+
+            <div>
+                <h4>Customer Home Page</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.AccountName)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.AccountName)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.AccountType)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.AccountType)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.BankAccountID)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.BankAccountID)
+                    </dd>
+                </dl>
+            </div>
+            <h5>Customer Accounts</h5>
+            <table class="table table-primary">
+                
+                @*
+                @foreach (var ba in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(ModelItem => ba.AccountName)</td>
+                        <td>@Html.DisplayFor(ModelItem => ba.AccountType)</td>
+                        <td>@Html.DisplayFor(ModelItem => ba.BankAccountID)</td>
+                    </tr>
+                }
+                    *@
+
+
+            </table>
+            <div>
+                <a asp-action="Create" asp-controller="BankAccounts" class="btn btn-success">Create New Account</a>
+
+            </div>
+
+        }
+
+
+
+    </div>
+
+</body>
+</html>
